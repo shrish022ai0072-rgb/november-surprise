@@ -1,0 +1,2487 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>For My Favorite Person ✨ | 3 Years & 17th Birthday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root[data-theme="midnight"] {
+      --bg-start: #0b0312;
+      --bg-end: #1f0930;
+      --card-bg: rgba(255, 255, 255, 0.07);
+      --card-border: rgba(255, 194, 212, 0.24);
+      --text-main: #fff5f8;
+      --text-muted: #e2bfd0;
+      --accent: #ff3b82;
+      --accent-glow: rgba(255, 59, 130, 0.48);
+      --accent-2: #ffb703;
+    }
+
+    :root[data-theme="sakura"] {
+      --bg-start: #fff0f6;
+      --bg-end: #ffd6e8;
+      --card-bg: rgba(255, 255, 255, 0.86);
+      --card-border: rgba(235, 94, 150, 0.32);
+      --text-main: #3b1025;
+      --text-muted: #7a3b58;
+      --accent: #e6397a;
+      --accent-glow: rgba(230, 57, 122, 0.35);
+      --accent-2: #d97706;
+    }
+
+    :root[data-theme="golden"] {
+      --bg-start: #140b04;
+      --bg-end: #2c1607;
+      --card-bg: rgba(255, 245, 230, 0.08);
+      --card-border: rgba(251, 191, 36, 0.3);
+      --text-main: #fffbeb;
+      --text-muted: #fde68a;
+      --accent: #f59e0b;
+      --accent-glow: rgba(245, 158, 11, 0.45);
+      --accent-2: #fb7185;
+    }
+
+    :root[data-theme="lavender"] {
+      --bg-start: #0e0924;
+      --bg-end: #26144c;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(196, 181, 253, 0.28);
+      --text-main: #f5f3ff;
+      --text-muted: #ddd6fe;
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.45);
+      --accent-2: #f472b6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
+      padding-bottom: 90px; /* space for mobile bottom nav */
+    }
+
+    #bgCanvas, #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #confettiCanvas {
+      z-index: 100;
+    }
+
+    /* TOUCH HEART BURST FOR SMARTPHONES */
+    .touch-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      font-size: 1.25rem;
+      animation: floatTouchHeart 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes floatTouchHeart {
+      0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+      100% { transform: translate(calc(-50% + var(--tx)), calc(-50% - 65px)) scale(1.35) rotate(var(--rot)); opacity: 0; }
+    }
+
+    /* TOP NAVIGATION BAR */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 0.85rem;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(0, 0, 0, 0.32);
+      border-bottom: 1px solid var(--card-border);
+      gap: 0.4rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    .sparkle-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      animation: pulseDot 1.6s infinite alternate;
+    }
+
+    @keyframes pulseDot {
+      from { transform: scale(0.9); opacity: 0.7; }
+      to { transform: scale(1.25); opacity: 1; }
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .theme-pills {
+      display: flex;
+      gap: 0.15rem;
+      background: var(--card-bg);
+      padding: 0.18rem;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+    }
+
+    .theme-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.38rem;
+      border-radius: 999px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .theme-btn.active {
+      background: var(--accent);
+      transform: scale(1.08);
+    }
+
+    .preview-pill {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 0.34rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: transform 0.15s, background 0.2s;
+    }
+
+    .preview-pill.music-playing {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* REAL-TIME SIMULATOR PANEL */
+    .creator-bar {
+      position: relative;
+      z-index: 45;
+      background: rgba(15, 6, 28, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--accent);
+      padding: 0.85rem 0.9rem;
+      color: #fff;
+      font-size: 0.78rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .sim-grid {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sim-top-row, .sim-controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .sim-clock-badge {
+      font-family: 'Space Mono', monospace;
+      background: rgba(255, 59, 130, 0.22);
+      border: 1px solid var(--accent);
+      padding: 0.28rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      color: #ffd1e3;
+    }
+
+    .sim-input {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.32rem 0.55rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.75rem;
+    }
+
+    .stage-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .stage-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* SMARTPHONE FLOATING BOTTOM NAVIGATION BAR */
+    .chapter-tabs {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 80;
+      display: flex;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.4rem;
+      background: rgba(15, 5, 28, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      width: calc(100% - 24px);
+      max-width: 520px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: transparent;
+      color: var(--text-muted);
+      border: none;
+      padding: 0.6rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.76rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 15px var(--accent-glow);
+      transform: scale(1.03);
+    }
+
+    /* UNLOCK TOAST BANNER */
+    .unlock-toast {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 95;
+      background: linear-gradient(135deg, #ff3b82, #9333ea);
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 18px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      width: calc(100% - 28px);
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      animation: popDownToast 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes popDownToast {
+      from { transform: translate(-50%, -40px); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+
+    /* MAIN CONTAINER & CARDS */
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0.9rem 0.85rem 2rem;
+    }
+
+    .view-section {
+      display: none;
+      animation: viewSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes viewSlideUp {
+      from { opacity: 0; transform: translateY(18px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 24px;
+      padding: 1.35rem 1.05rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      margin-bottom: 1.15rem;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-timer-card {
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 59, 130, 0.2);
+      border: 1px solid var(--card-border);
+      margin-bottom: 0.65rem;
+      animation: floatBadge 3s ease-in-out infinite;
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .serif-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 6vw, 2.45rem);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      max-width: 540px;
+      margin: 0 auto 1.15rem;
+    }
+
+    /* MILESTONE TRACKER */
+    .milestone-track {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .milestone-step {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--card-border);
+      padding: 0.55rem 0.65rem;
+      border-radius: 14px;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .milestone-step.unlocked {
+      border-color: var(--accent);
+      box-shadow: 0 0 16px var(--accent-glow);
+      background: rgba(255, 59, 130, 0.14);
+    }
+
+    .step-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step-label {
+      font-size: 0.66rem;
+      color: var(--text-muted);
+    }
+
+    .step-date {
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .milestone-line {
+      width: 14px;
+      height: 2px;
+      background: var(--card-border);
+    }
+
+    /* COUNTDOWN GRID WITH 3D PULSE */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .time-box {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 0.75rem 0.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mono-num {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1.35rem, 5.5vw, 2.15rem);
+      font-weight: 700;
+      color: var(--accent);
+      display: inline-block;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .mono-num.tick-pop {
+      transform: scale(1.16);
+    }
+
+    .time-unit {
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .total-hours-bar {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.55rem 0.75rem;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      line-height: 1.4;
+    }
+
+    .unlock-actions {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    @media (min-width: 500px) {
+      .unlock-actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .primary-btn, .cta-btn, .secondary-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.72rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .primary-btn, .cta-btn {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+
+    .gold-btn {
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+    }
+
+    .secondary-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .primary-btn:active, .cta-btn:active, .secondary-btn:active {
+      transform: scale(0.94);
+    }
+
+    /* MINI ARCADE SECTION */
+    .section-header {
+      text-align: center;
+      margin: 1.4rem 0 0.85rem;
+    }
+
+    .section-header p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .game-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+
+    @media (min-width: 540px) {
+      .game-tabs {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .game-tab {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 0.65rem 0.4rem;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .game-tab.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 6px 18px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .game-panel {
+      display: none;
+      text-align: center;
+    }
+
+    .game-panel.active {
+      display: block;
+    }
+
+    .game-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      margin-bottom: 0.75rem;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .game-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hud-pills {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .score-pill {
+      background: rgba(0, 0, 0, 0.32);
+      border: 1px solid var(--card-border);
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    canvas#heartCatcherCanvas,
+    canvas#starCanvas {
+      width: 100%;
+      max-width: 400px;
+      height: 280px;
+      background: radial-gradient(circle at 50% 20%, rgba(45, 16, 70, 0.65), rgba(8, 3, 15, 0.9));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      touch-action: none;
+      display: block;
+      margin: 0 auto 0.8rem;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .game-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .game-msg {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      min-height: 1.2em;
+    }
+
+    /* 3D MEMORY CARDS */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      max-width: 330px;
+      margin: 0 auto 0.9rem;
+      perspective: 900px;
+    }
+
+    .mem-card {
+      aspect-ratio: 1;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .mem-card.flipped, .mem-card.matched {
+      transform: rotateY(180deg);
+    }
+
+    .mem-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .mem-front {
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .mem-back {
+      background: linear-gradient(135deg, rgba(255, 59, 130, 0.38), rgba(168, 85, 247, 0.38));
+      border-color: var(--accent);
+      transform: rotateY(180deg);
+      font-size: 1.55rem;
+    }
+
+    /* SOAP BUBBLE ARENA */
+    .bubble-arena {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 270px;
+      margin: 0 auto 0.8rem;
+      background: radial-gradient(circle at 50% 80%, rgba(255, 59, 130, 0.18), rgba(10, 4, 20, 0.88));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
+
+    .bubble-note {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      width: 92%;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+      color: #fff;
+      transition: transform 0.2s ease;
+    }
+
+    .pop-bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 28% 28%,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 190, 230, 0.45) 28%,
+        rgba(140, 200, 255, 0.25) 62%,
+        rgba(255, 59, 130, 0.55) 100%);
+      box-shadow: inset -4px -4px 10px rgba(255, 59, 130, 0.4), inset 4px 4px 10px rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .bubble-burst-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ff9ebb;
+      pointer-events: none;
+      animation: burstOut 0.45s ease-out forwards;
+    }
+
+    @keyframes burstOut {
+      to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+    }
+
+    /* FRIENDSHIP & BIRTHDAY CONTENT STYLES */
+    .friendship-live-counter {
+      background: linear-gradient(135deg, rgba(255, 59, 130, 0.18), rgba(168, 85, 247, 0.18));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .friendship-live-counter h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-2);
+      margin-bottom: 0.35rem;
+    }
+
+    .friendship-live-counter p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .chat-capsule {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 0.95rem;
+      margin: 1.15rem 0;
+      text-align: left;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .chat-bubble {
+      padding: 0.7rem 0.9rem;
+      border-radius: 16px;
+      margin-bottom: 0.55rem;
+      max-width: 90%;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .chat-bubble.left {
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom-left-radius: 4px;
+    }
+
+    .chat-bubble.right {
+      background: rgba(255, 59, 130, 0.3);
+      margin-left: auto;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-time {
+      display: block;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .section-sub {
+      margin: 1.5rem 0 0.8rem;
+      text-align: center;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      text-align: left;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 0.75rem;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--card-border);
+      padding: 0.9rem;
+      border-radius: 16px;
+    }
+
+    .tl-badge {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.72rem;
+      padding: 0.32rem 0.6rem;
+      border-radius: 10px;
+      height: fit-content;
+      white-space: nowrap;
+    }
+
+    .tl-content h3 {
+      font-size: 0.92rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .tl-content p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ENVELOPE CARDS */
+    .envelope-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+
+    @media (min-width: 520px) {
+      .envelope-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .envelope-card {
+      background: rgba(0, 0, 0, 0.24);
+      border: 1px solid var(--card-border);
+      padding: 1rem;
+      border-radius: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.22s, border-color 0.22s, background 0.22s;
+    }
+
+    .envelope-card.opened {
+      background: rgba(255, 59, 130, 0.16);
+      border-color: var(--accent);
+    }
+
+    .env-icon {
+      font-size: 1.75rem;
+      display: inline-block;
+      transition: transform 0.25s;
+    }
+
+    .envelope-card.opened .env-icon {
+      transform: scale(1.18) rotate(-6deg);
+    }
+
+    .env-title {
+      font-weight: 600;
+      font-size: 0.86rem;
+      margin: 0.4rem 0;
+      line-height: 1.45;
+    }
+
+    .env-tap {
+      font-size: 0.74rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* PROMISE CHECKLIST CARDS (NOV 5) */
+    .promise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      text-align: left;
+      margin-top: 0.85rem;
+    }
+
+    .promise-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--card-border);
+      padding: 0.75rem 0.9rem;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 0.86rem;
+      transition: all 0.2s;
+    }
+
+    .promise-item.checked {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #34d399;
+    }
+
+    .promise-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .promise-item.checked .promise-check {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+
+    .next-teaser-box {
+      margin-top: 1.4rem;
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255, 183, 3, 0.14);
+      border: 1px solid var(--card-border);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      align-items: center;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .glass-inner {
+      background: rgba(0, 0, 0, 0.24);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.2rem 0.95rem;
+      margin-top: 1.15rem;
+      text-align: center;
+    }
+
+    /* CAKE & CANDLES */
+    .cake-illustration {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.35rem 0 1.05rem;
+    }
+
+    .candles-wrap {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: -4px;
+      z-index: 2;
+    }
+
+    .num-candle {
+      position: relative;
+      background: linear-gradient(180deg, #fff, #ff9ebb);
+      color: #b91c1c;
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 38px;
+      height: 54px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    .flame {
+      position: absolute;
+      top: -22px;
+      width: 15px;
+      height: 22px;
+      background: radial-gradient(circle, #fff 10%, #fbbf24 50%, #f97316 90%);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 18px #fbbf24;
+      animation: flicker 0.5s infinite alternate;
+    }
+
+    .flame.out {
+      display: none;
+    }
+
+    @keyframes flicker {
+      from { transform: scale(1) rotate(-3deg); }
+      to { transform: scale(1.15) rotate(3deg); }
+    }
+
+    .cake-tier-top {
+      width: 165px;
+      height: 48px;
+      background: linear-gradient(180deg, #fda4af, #f43f5e);
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .cake-tier-bottom {
+      width: 215px;
+      height: 56px;
+      background: linear-gradient(180deg, #f472b6, #db2777);
+      border-radius: 12px 12px 6px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    .cake-plate {
+      width: 245px;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+    }
+
+    .wish-msg {
+      margin-top: 0.85rem;
+      color: #fde047;
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .reason-card-display {
+      margin-top: 0.85rem;
+      padding: 1rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .reason-count {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .reason-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      margin: 0.65rem 0 1rem;
+      line-height: 1.35;
+    }
+
+    .reason-btns {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .letter-body {
+      text-align: left;
+      font-size: 0.92rem;
+      line-height: 1.72;
+      color: var(--text-main);
+      margin: 0.9rem 0 1.2rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Live Unlock Notification Banner -->
+  <div id="unlockToast" class="unlock-toast hidden">
+    <span id="toastText">🎉 A New Surprise Just Unlocked!</span>
+  </div>
+
+  <!-- Top Smartphone-Friendly Header -->
+  <header class="top-nav">
+    <div class="brand">
+      <span class="sparkle-dot"></span>
+      <span id="navTitle">For My Love ✨</span>
+    </div>
+
+    <div class="nav-controls">
+      <button id="musicToggleBtn" class="preview-pill" title="Play Romantic Music Box">🎵 Music</button>
+      <button id="soundToggleBtn" class="preview-pill" title="Toggle Sound Effects">🔊 SFX</button>
+      <div class="theme-pills" title="Switch Theme">
+        <button class="theme-btn active" data-set-theme="midnight" title="Rose Midnight">🌙</button>
+        <button class="theme-btn" data-set-theme="sakura" title="Soft Sakura">🌸</button>
+        <button class="theme-btn" data-set-theme="golden" title="Golden Hour">✨</button>
+        <button class="theme-btn" data-set-theme="lavender" title="Dreamy Lavender">💜</button>
+      </div>
+      <button id="previewToggleBtn" class="preview-pill">🔑 Test</button>
+    </div>
+  </header>
+
+  <!-- REAL-TIME SIMULATION LABORATORY (Toggle via Test button) -->
+  <div id="creatorBar" class="creator-bar hidden">
+    <div class="sim-grid">
+      <div class="sim-top-row">
+        <span>🧪 <strong>Real-Time Simulator</strong> (Test how the site works live!)</span>
+        <div class="sim-clock-badge">
+          🕒 <strong id="simClockReadout">Loading...</strong>
+          <span id="simModeTag">(LIVE)</span>
+        </div>
+      </div>
+
+      <div class="sim-controls-row">
+        <span>⚡ <strong>Live Unlock Test:</strong></span>
+        <button class="stage-btn active" id="btnRealTime">🟢 Real Time</button>
+        <button class="stage-btn" id="btn10sNov2">⏳ 10s Before Friendship Day (7:44:50 PM)</button>
+        <button class="stage-btn" id="btn10sNov5">🎂 10s Before 5 Nov Bday (11:59:50 PM)</button>
+        <label style="display:flex; align-items:center; gap:4px; margin-left:auto; cursor:pointer;">
+          <input type="checkbox" id="autoSwitchToggle" checked />
+          Auto-open when timer hits 00:00:00
+        </label>
+      </div>
+
+      <div class="sim-controls-row">
+        <span>📅 <strong>Pick Any Time:</strong></span>
+        <input type="datetime-local" id="customSimDateInput" step="1" class="sim-input" />
+        <button class="stage-btn" id="applyCustomDateBtn">▶ Jump</button>
+
+        <span style="margin-left:auto;">⏩ <strong>Speed:</strong></span>
+        <button class="stage-btn speed-btn active" data-speed="1">1x</button>
+        <button class="stage-btn speed-btn" data-speed="60">60x</button>
+        <button class="stage-btn speed-btn" data-speed="3600">3600x</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smartphone Floating Bottom App Bar (Appears when unlocked) -->
+  <nav id="chapterTabs" class="chapter-tabs hidden">
+    <button class="tab-btn active" data-view="timerView">⏳ Timer & Games</button>
+    <button class="tab-btn hidden" id="tabNov2" data-view="nov2View">🤝 Friendship Day</button>
+    <button class="tab-btn hidden" id="tabNov5" data-view="nov5View">🎂 17th Bday</button>
+  </nav>
+
+  <main class="container">
+
+    <!-- ===================================================
+         VIEW 1: SPOILER-FREE COUNTDOWN & MINI-GAMES
+         =================================================== -->
+    <section id="timerView" class="view-section active">
+      <div class="glass-card hero-timer-card">
+        <div class="badge-pill" id="ActivePhaseBadge">🔒 TWO SECRET SURPRISES INSIDE</div>
+        <h1 class="serif-title" id="timerHeadline">Something Special Is Waiting For You...</h1>
+        <p class="subtitle" id="timerSubtext">
+          I made this little website just for you. Two special surprises are locked inside! Don't peek yet—play the mini-games below while the timer counts down. 💖
+        </p>
+
+        <!-- Dual Milestone Progress -->
+        <div class="milestone-track">
+          <div class="milestone-step" id="stepNov2">
+            <div class="step-icon" id="iconNov2">🔒</div>
+            <div class="step-info">
+              <span class="step-label">Surprise #1</span>
+              <span class="step-date">2 Nov • 7:45 PM</span>
+            </div>
+          </div>
+          <div class="milestone-line"></div>
+          <div class="milestone-step" id="stepNov5">
+            <div class="step-icon" id="iconNov5">🔒</div>
+            <div class="step-info">
+              <span class="step-label">Surprise #2</span>
+              <span class="step-date">5 Nov • 12:00 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Digital Countdown -->
+        <div class="countdown-grid">
+          <div class="time-box">
+            <span class="mono-num" id="cdDays">00</span>
+            <span class="time-unit">Days</span>
+          </div>
+          <div class="time-box">
+            <span class="mono-num" id="cdHours">00</span>
+            <span class="time-unit">Hours</span>
+          </div>
+          <div class="time-box">
+            <span class="mono-num" id="cdMins">00</span>
+            <span class="time-unit">Minutes</span>
+          </div>
+          <div class="time-box">
+            <span class="mono-num" id="cdSecs">00</span>
+            <span class="time-unit">Seconds</span>
+          </div>
+        </div>
+
+        <div class="total-hours-bar">
+          <span>⏳ Time Left: <strong id="totalHoursText">0 Days, 0 Hours, 0 Mins, 0 Secs</strong></span>
+          <span>•</span>
+          <span>(<strong id="rawTotalHours">0</strong> Total Hours)</span>
+        </div>
+
+        <div id="unlockActions" class="unlock-actions hidden">
+          <button id="openNov2Btn" class="cta-btn hidden">🤝 Open Our Friendship Day Surprise</button>
+          <button id="openNov5Btn" class="cta-btn gold-btn hidden">🎂 Open Your 17th Birthday Surprise</button>
+        </div>
+      </div>
+
+      <!-- UPGRADED REALISTIC ARCADE -->
+      <div class="arcade-section">
+        <div class="section-header">
+          <h2 class="serif-title">Cute Time-Pass Arcade 🎮</h2>
+          <p>Play these 4 games on your phone while waiting for the surprise!</p>
+        </div>
+
+        <div class="game-tabs">
+          <button class="game-tab active" data-game="game1">💖 Catch Hearts</button>
+          <button class="game-tab" data-game="game2">🃏 3D Memory</button>
+          <button class="game-tab" data-game="game3">🫧 Pop Bubbles</button>
+          <button class="game-tab" data-game="game4">⭐ Draw Stars</button>
+        </div>
+
+        <!-- GAME 1 -->
+        <div id="game1" class="game-panel active glass-card">
+          <div class="game-top-bar">
+            <div>
+              <h3>💖 Catch My Hearts</h3>
+              <p class="game-hint">Slide your finger to catch 💖 & 🌟! Avoid ⛈️ clouds!</p>
+            </div>
+            <div class="hud-pills">
+              <div class="score-pill" id="g1Lives">❤️❤️❤️</div>
+              <div class="score-pill">Combo: <span id="g1Combo">1x</span></div>
+              <div class="score-pill">Score: <span id="g1Score">0</span></div>
+            </div>
+          </div>
+          <canvas id="heartCatcherCanvas" width="400" height="280"></canvas>
+          <div class="game-controls">
+            <button id="g1StartBtn" class="primary-btn">▶ Start Game</button>
+            <span id="g1Msg" class="game-msg">Score 200+ points to unlock a sweet hint!</span>
+          </div>
+        </div>
+
+        <!-- GAME 2 -->
+        <div id="game2" class="game-panel glass-card">
+          <div class="game-top-bar">
+            <div>
+              <h3>🃏 3D Love Memory Match</h3>
+              <p class="game-hint">Tap cards to flip & match all 8 cute pairs!</p>
+            </div>
+            <div class="hud-pills">
+              <div class="score-pill">⏱️ <span id="g2Timer">0s</span></div>
+              <div class="score-pill">Moves: <span id="g2Moves">0</span></div>
+              <div class="score-pill">🏆 Best: <span id="g2Best">--</span></div>
+            </div>
+          </div>
+          <div id="memoryGrid" class="memory-grid"></div>
+          <div class="game-controls">
+            <button id="g2ResetBtn" class="primary-btn">🔄 Shuffle Cards</button>
+            <span id="g2Msg" class="game-msg">Tap any card to start!</span>
+          </div>
+        </div>
+
+        <!-- GAME 3 -->
+        <div id="game3" class="game-panel glass-card">
+          <div class="game-top-bar">
+            <div>
+              <h3>🫧 Sweet Message Bubbles</h3>
+              <p class="game-hint">Tap the floating soap bubbles to read little notes!</p>
+            </div>
+            <div class="hud-pills">
+              <div class="score-pill">Popped: <span id="g3Score">0</span></div>
+            </div>
+          </div>
+          <div id="bubbleArena" class="bubble-arena">
+            <div id="bubbleFloatingNote" class="bubble-note">Tap any floating bubble! ✨</div>
+          </div>
+          <div class="game-controls">
+            <button id="g3SpawnBtn" class="primary-btn">🫧 Blow More Bubbles</button>
+          </div>
+        </div>
+
+        <!-- GAME 4 -->
+        <div id="game4" class="game-panel glass-card">
+          <div class="game-top-bar">
+            <div>
+              <h3>⭐ Connect Our Heart in the Sky</h3>
+              <p class="game-hint">Drag your finger from Star #1 to #10!</p>
+            </div>
+            <div class="hud-pills">
+              <div class="score-pill">Stars: <span id="g4Progress">0/10</span></div>
+            </div>
+          </div>
+          <canvas id="starCanvas" width="400" height="280"></canvas>
+          <div class="game-controls">
+            <button id="g4ResetBtn" class="primary-btn">🔄 Reset Stars</button>
+            <span id="g4Msg" class="game-msg">Tap or drag from glowing Star #1!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         VIEW 2: SURPRISE #1 — HAPPY FRIENDSHIP DAY (3 YEARS)
+         =================================================== -->
+    <section id="nov2View" class="view-section">
+      <div class="glass-card milestone-hero">
+        <div class="badge-pill">✨ SURPRISE #1 UNLOCKED • 7:45 PM</div>
+        <h1 class="serif-title">Happy Friendship Day, My Love! 🤝💖</h1>
+        <p class="subtitle">
+          Happy 3 Years of Friendship to my favorite person! 3 years ago at <strong>7:45 PM</strong>, we had our very first interaction. Back then, I had no idea that one simple talk would make you my closest friend and the love of my life.
+        </p>
+
+        <!-- Live 3-Year Friendship Counter -->
+        <div class="friendship-live-counter">
+          <h4>⏳ Time Since Our First Interaction at 7:45 PM</h4>
+          <p id="friendshipDurationText">3 Years • 1,095+ Days • 26,280+ Hours of Us 💖</p>
+        </div>
+
+        <!-- Realistic Chat Memory Replay -->
+        <div class="chat-capsule">
+          <div class="chat-header">
+            <span class="live-dot"></span>
+            <strong>Where It All Started • 7:45 PM (3 Years Ago)</strong>
+          </div>
+          <div class="chat-messages">
+            <div class="chat-bubble left">
+              <span class="chat-time">7:45 PM</span>
+              <p>Do you remember this exact time 3 years ago? Our very first talk started right at 7:45 PM! ✨</p>
+            </div>
+            <div class="chat-bubble right">
+              <span class="chat-time">7:46 PM</span>
+              <p>It started as a simple conversation, then we became best friends, and now you mean the whole world to me. ❤️</p>
+            </div>
+            <div class="chat-bubble left">
+              <span class="chat-time">7:47 PM</span>
+              <p>Happy Our First Friendship Day! Thank you for being my best friend and my love for 3 beautiful years. 🥺💖</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Realistic 3-Year Story in Simple Language -->
+        <h2 class="serif-title section-sub">How 3 Years Turned Into Forever ✨</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-badge">Year 1</div>
+            <div class="tl-content">
+              <h3>7:45 PM — The First Hello</h3>
+              <p>Everything started at 7:45 PM. Talking to you felt so easy and natural from day one. Slowly, talking to you became the best part of my day.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-badge">Year 2</div>
+            <div class="tl-content">
+              <h3>From Friends to Best Friends</h3>
+              <p>Sharing every small detail of our day, laughing at silly jokes, and always standing by each other—you became the one person I could trust with everything.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-badge">Year 3</div>
+            <div class="tl-content">
+              <h3>My Best Friend & My Love</h3>
+              <p>Today we complete 3 amazing years as friends! Having my best friend as my girlfriend is the luckiest feeling in the world. Happy Friendship Day, my love!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tap to Open Envelopes -->
+        <h2 class="serif-title section-sub">Tap to Open Little Friendship Notes 💌</h2>
+        <div class="envelope-grid">
+          <div class="envelope-card" data-note="I still smile whenever I think about how we first talked at 7:45 PM. That moment changed my life! 🌟">
+            <span class="env-icon">💌</span>
+            <p class="env-title">Tap to Open Note #1</p>
+            <span class="env-tap">About 7:45 PM ✨</span>
+          </div>
+          <div class="envelope-card" data-note="You are not just my girlfriend—you are my best friend first. I can be 100% myself with you. 🤍">
+            <span class="env-icon">💌</span>
+            <p class="env-title">Tap to Open Note #2</p>
+            <span class="env-tap">Why You're Special 💖</span>
+          </div>
+          <div class="envelope-card" data-note="Thank you for handling my mood swings, making me laugh, and staying with me for 3 full years! 🌸">
+            <span class="env-icon">💌</span>
+            <p class="env-title">Tap to Open Note #3</p>
+            <span class="env-tap">Thank You, Bestie 🥰</span>
+          </div>
+          <div class="envelope-card" data-note="3 years are done, and I want to celebrate 30 more years of friendship and love with you! ♾️">
+            <span class="env-icon">💌</span>
+            <p class="env-title">Tap to Open Note #4</p>
+            <span class="env-tap">My Promise 💍</span>
+          </div>
+        </div>
+
+        <div class="next-teaser-box">
+          <p>🎂 <strong>Wait! This is only Surprise #1!</strong><br>Your big day—your <strong>17th Birthday on 5 November</strong>—is coming next! Keep watching the timer!</p>
+          <button class="primary-btn" id="backToTimerFromNov2">⏳ Back to 5 November Countdown</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         VIEW 3: SURPRISE #2 — 5 NOV (HER 17TH BIRTHDAY!)
+         =================================================== -->
+    <section id="nov5View" class="view-section">
+      <div class="glass-card birthday-hero">
+        <div class="badge-pill gold-badge">👑 SURPRISE #2 UNLOCKED • 5 NOVEMBER</div>
+        <h1 class="serif-title bday-main-title">Happy 17th Birthday, My Love! 🎂💖</h1>
+        <p class="subtitle">
+          Today is <strong>5 November</strong>, and my favorite girl in the whole world just completed <strong>17 beautiful years</strong>! Happy Birthday to my best friend, my happiness, and my love.
+        </p>
+
+        <!-- Interactive 17th Birthday Cake -->
+        <div class="cake-stage glass-inner">
+          <h3>🕯️ Close Your Eyes, Make a Wish & Blow Out Your Candles!</h3>
+          <p class="game-hint">Tap the glowing "1" and "7" candles on your screen to blow them out!</p>
+
+          <div class="cake-illustration">
+            <div class="candles-wrap">
+              <div class="num-candle" id="candle1">
+                <div class="flame" id="flame1"></div>
+                <span>1</span>
+              </div>
+              <div class="num-candle" id="candle7">
+                <div class="flame" id="flame7"></div>
+                <span>7</span>
+              </div>
+            </div>
+            <div class="cake-tier-top">Sweet 17 💖</div>
+            <div class="cake-tier-bottom">5 November ✨</div>
+            <div class="cake-plate"></div>
+          </div>
+
+          <button id="blowCandlesBtn" class="cta-btn gold-btn">🌬️ Blow Candles & Celebrate!</button>
+          <p id="wishUnlockedMsg" class="wish-msg hidden">🎉 Yay! Happy 17th Birthday, my love! I hope every single wish you just made comes true this year! 💖✨</p>
+        </div>
+
+        <!-- 17 Reasons in Simple, Realistic Language -->
+        <div class="reasons-box glass-inner">
+          <h3>✨ 17 Things I Love About You (For Your 17th Birthday)</h3>
+          <p class="game-hint">Tap Next to read all 17 things from my heart</p>
+          <div class="reason-card-display">
+            <span class="reason-count" id="reasonNumber">Thing #1 of 17</span>
+            <p class="reason-text" id="reasonText">"Your smile—it honestly fixes my whole day in one second."</p>
+            <div class="reason-btns">
+              <button id="prevReasonBtn" class="secondary-btn">← Back</button>
+              <button id="nextReasonBtn" class="primary-btn">Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Birthday Wishes & Promises Checklist -->
+        <div class="glass-inner">
+          <h3>🌸 My Wishes & Promises for Your 17th Year</h3>
+          <p class="game-hint">Tap each one to seal the promise with a heart!</p>
+          <div class="promise-list">
+            <div class="promise-item">
+              <div class="promise-check">✓</div>
+              <span>I promise to always be your best friend first, just like we started 3 years ago at 7:45 PM.</span>
+            </div>
+            <div class="promise-item">
+              <div class="promise-check">✓</div>
+              <span>I promise to listen to all your stories, big or small, and never get tired of talking to you.</span>
+            </div>
+            <div class="promise-item">
+              <div class="promise-check">✓</div>
+              <span>I promise to support your dreams and cheer for you louder than anyone else as you turn 17.</span>
+            </div>
+            <div class="promise-item">
+              <div class="promise-check">✓</div>
+              <span>I promise to annoy you, make you laugh when you're sad, and love you more every single day. 💖</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Heartfelt Birthday Letter in Simple Language -->
+        <div class="letter-box glass-inner">
+          <h3 class="serif-title">A Little Letter For Your 17th Birthday 💌</h3>
+          <p class="letter-body">
+            Happy 17th Birthday, my love! 🎂❤️<br><br>
+            It feels so special that we get to celebrate two huge moments together—completing <strong>3 years of our friendship</strong> from that first interaction at <strong>7:45 PM</strong>, and now celebrating you turning <strong>17 today on 5 November</strong>.<br><br>
+            In these 3 years, you have become my happiest habit, my safest place, and the person I care about the most. Life is just so much better and brighter because you are in it.<br><br>
+            As you step into your 17th year, I just want to see you always smiling, healthy, and achieving everything your heart wants. No matter what happens, I am always right here with you.<br><br>
+            <strong>Happy Friendship Day & Happy 17th Birthday, my love!</strong> 💖✨
+          </p>
+          <button id="extraConfettiBtn" class="cta-btn">🎉 Tap for Birthday Confetti & Cheer!</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ====================================================
+    // 1. UPGRADED SOUND EFFECTS & MUSIC BOX ENGINE
+    // ====================================================
+    let soundEnabled = true;
+    let musicPlaying = false;
+    let musicInterval = null;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function ensureAudio() {
+      if (!audioCtx) audioCtx = new AudioCtx();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function vibratePhone(ms = 25) {
+      if (navigator.vibrate) {
+        try { navigator.vibrate(ms); } catch (e) {}
+      }
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.14, gainVal = 0.12, slideFreq = null) {
+      if (!soundEnabled) return;
+      try {
+        ensureAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        if (slideFreq) {
+          osc.frequency.exponentialRampToValueAtTime(slideFreq, audioCtx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function sfxCatch(isGold = false) {
+      vibratePhone(20);
+      playTone(isGold ? 880 : 587, 'sine', 0.11, 0.13);
+      setTimeout(() => playTone(isGold ? 1174 : 784, 'triangle', 0.17, 0.12), 60);
+    }
+
+    function sfxDamage() {
+      vibratePhone([40, 30, 40]);
+      playTone(190, 'sawtooth', 0.25, 0.14, 95);
+    }
+
+    function sfxPop() {
+      vibratePhone(15);
+      playTone(480 + Math.random() * 260, 'sine', 0.09, 0.13, 880);
+    }
+
+    function sfxEnvelope() {
+      vibratePhone(20);
+      playTone(440, 'triangle', 0.08, 0.1);
+      setTimeout(() => playTone(659, 'sine', 0.14, 0.12), 55);
+    }
+
+    function sfxTick() {
+      playTone(800, 'sine', 0.04, 0.06);
+    }
+
+    function sfxHarpSwipe() {
+      vibratePhone(20);
+      [523, 659, 784, 987, 1046].forEach((f, i) => {
+        setTimeout(() => playTone(f, 'sine', 0.18, 0.08), i * 45);
+      });
+    }
+
+    function sfxWin() {
+      vibratePhone([30, 50, 60]);
+      [523, 659, 784, 1046, 1318].forEach((f, idx) => {
+        setTimeout(() => playTone(f, 'triangle', 0.26, 0.15), idx * 85);
+      });
+    }
+
+    // Romantic Music Box Melody Loop
+    const melodyNotes = [523.25, 659.25, 783.99, 659.25, 880.00, 783.99, 659.25, 587.33, 523.25, 587.33, 659.25, 523.25];
+    let noteIdx = 0;
+
+    document.getElementById('musicToggleBtn').addEventListener('click', (e) => {
+      musicPlaying = !musicPlaying;
+      e.target.classList.toggle('music-playing', musicPlaying);
+      e.target.textContent = musicPlaying ? '🎵 Playing' : '🎵 Music';
+      if (musicPlaying) {
+        ensureAudio();
+        musicInterval = setInterval(() => {
+          if (soundEnabled) {
+            playTone(melodyNotes[noteIdx % melodyNotes.length], 'sine', 0.42, 0.05);
+            noteIdx++;
+          }
+        }, 420);
+      } else {
+        clearInterval(musicInterval);
+      }
+    });
+
+    document.getElementById('soundToggleBtn').addEventListener('click', (e) => {
+      soundEnabled = !soundEnabled;
+      e.target.textContent = soundEnabled ? '🔊 SFX' : '🔇 Mute';
+    });
+
+    // ====================================================
+    // 2. SMARTPHONE TOUCH SPARKLE & HEART BURST
+    // ====================================================
+    document.addEventListener('pointerdown', (e) => {
+      // Spawn 2 cute floating hearts wherever she touches the phone screen
+      for (let i = 0; i < 2; i++) {
+        const h = document.createElement('span');
+        h.className = 'touch-heart';
+        h.textContent = ['💖', '✨', '🌸', '🤍'][Math.floor(Math.random() * 4)];
+        h.style.left = `${e.clientX}px`;
+        h.style.top = `${e.clientY}px`;
+        h.style.setProperty('--tx', `${(Math.random() - 0.5) * 50}px`);
+        h.style.setProperty('--rot', `${(Math.random() - 0.5) * 40}deg`);
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 850);
+      }
+    });
+
+    // ====================================================
+    // 3. CONFETTI CANNON
+    // ====================================================
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let confettiPieces = [];
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function launchConfetti() {
+      const colors = ['#ff3b82', '#ffb703', '#a855f7', '#34d399', '#fff'];
+      for (let i = 0; i < 95; i++) {
+        confettiPieces.push({
+          x: window.innerWidth / 2 + (Math.random() - 0.5) * 180,
+          y: window.innerHeight * 0.45,
+          vx: (Math.random() - 0.5) * 12,
+          vy: -Math.random() * 12 - 4,
+          size: 6 + Math.random() * 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * Math.PI,
+          vRot: (Math.random() - 0.5) * 0.2,
+          alpha: 1
+        });
+      }
+    }
+
+    function animateConfetti() {
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      for (let i = confettiPieces.length - 1; i >= 0; i--) {
+        const p = confettiPieces[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.28; p.rot += p.vRot; p.alpha -= 0.008;
+        if (p.alpha <= 0 || p.y > confettiCanvas.height + 20) {
+          confettiPieces.splice(i, 1);
+          continue;
+        }
+        cCtx.save();
+        cCtx.globalAlpha = p.alpha;
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate(p.rot);
+        cCtx.fillStyle = p.color;
+        cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        cCtx.restore();
+      }
+      requestAnimationFrame(animateConfetti);
+    }
+    animateConfetti();
+
+    function showUnlockToast(msg) {
+      const toast = document.getElementById('unlockToast');
+      document.getElementById('toastText').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 5000);
+    }
+
+    // ====================================================
+    // 4. REAL-TIME & SIMULATED CLOCK ENGINE
+    // ====================================================
+    const TARGET_YEAR = new Date().getFullYear();
+    const NOV2_TARGET = new Date(TARGET_YEAR, 10, 2, 19, 45, 0); // 2 Nov, 7:45:00 PM
+    const NOV5_TARGET = new Date(TARGET_YEAR, 10, 5, 0, 0, 0);   // 5 Nov, 12:00:00 AM
+    const FIRST_MEET_2023 = new Date(TARGET_YEAR - 3, 10, 2, 19, 45, 0); // 3 years ago at 7:45 PM
+
+    let simState = {
+      isSimulating: false,
+      simAnchorVirtualMs: Date.now(),
+      simAnchorRealMs: Date.now(),
+      speedMultiplier: 1
+    };
+
+    function getCurrentTime() {
+      if (!simState.isSimulating) return new Date();
+      const elapsedReal = Date.now() - simState.simAnchorRealMs;
+      return new Date(simState.simAnchorVirtualMs + elapsedReal * simState.speedMultiplier);
+    }
+
+    let wasNov2Unlocked = getCurrentTime() >= NOV2_TARGET;
+    let wasNov5Unlocked = getCurrentTime() >= NOV5_TARGET;
+    let lastSecondValue = -1;
+
+    function setSimulatedTime(targetDateObj) {
+      simState.isSimulating = true;
+      simState.simAnchorVirtualMs = targetDateObj.getTime();
+      simState.simAnchorRealMs = Date.now();
+      wasNov2Unlocked = targetDateObj >= NOV2_TARGET;
+      wasNov5Unlocked = targetDateObj >= NOV5_TARGET;
+
+      const pad = n => String(n).padStart(2, '0');
+      const localIso = `${targetDateObj.getFullYear()}-${pad(targetDateObj.getMonth() + 1)}-${pad(targetDateObj.getDate())}T${pad(targetDateObj.getHours())}:${pad(targetDateObj.getMinutes())}:${pad(targetDateObj.getSeconds())}`;
+      document.getElementById('customSimDateInput').value = localIso;
+      document.getElementById('simModeTag').textContent = `(${simState.speedMultiplier}x SIM)`;
+      updateCountdownAndStage();
+    }
+
+    function resetToRealTime() {
+      simState.isSimulating = false;
+      simState.speedMultiplier = 1;
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.toggle('active', b.dataset.speed === '1'));
+      const now = new Date();
+      wasNov2Unlocked = now >= NOV2_TARGET;
+      wasNov5Unlocked = now >= NOV5_TARGET;
+      document.getElementById('simModeTag').textContent = '(LIVE)';
+      switchView('timerView');
+      updateCountdownAndStage();
+    }
+
+    // Theme & Navigation Listeners
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sfxPop();
+        document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.documentElement.setAttribute('data-theme', btn.dataset.setTheme);
+      });
+    });
+
+    document.getElementById('previewToggleBtn').addEventListener('click', () => {
+      sfxPop();
+      document.getElementById('creatorBar').classList.toggle('hidden');
+    });
+
+    document.getElementById('btnRealTime').addEventListener('click', (e) => {
+      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      resetToRealTime();
+    });
+
+    document.getElementById('btn10sNov2').addEventListener('click', (e) => {
+      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      switchView('timerView');
+      setSimulatedTime(new Date(NOV2_TARGET.getTime() - 10 * 1000));
+    });
+
+    document.getElementById('btn10sNov5').addEventListener('click', (e) => {
+      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      switchView('timerView');
+      setSimulatedTime(new Date(NOV5_TARGET.getTime() - 10 * 1000));
+    });
+
+    document.getElementById('applyCustomDateBtn').addEventListener('click', () => {
+      const val = document.getElementById('customSimDateInput').value;
+      if (!val) return;
+      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
+      setSimulatedTime(new Date(val));
+    });
+
+    document.querySelectorAll('.speed-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const nowVirtual = getCurrentTime();
+        simState.speedMultiplier = Number(btn.dataset.speed);
+        simState.isSimulating = true;
+        simState.simAnchorVirtualMs = nowVirtual.getTime();
+        simState.simAnchorRealMs = Date.now();
+        document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('simModeTag').textContent = `(${simState.speedMultiplier}x SIM)`;
+      });
+    });
+
+    function switchView(viewId) {
+      sfxHarpSwipe();
+      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(t => {
+        t.classList.toggle('active', t.dataset.view === viewId);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchView(btn.dataset.view));
+    });
+
+    document.getElementById('openNov2Btn').addEventListener('click', () => switchView('nov2View'));
+    document.getElementById('openNov5Btn').addEventListener('click', () => switchView('nov5View'));
+    document.getElementById('backToTimerFromNov2').addEventListener('click', () => switchView('timerView'));
+
+    function updateCountdownAndStage() {
+      const now = getCurrentTime();
+
+      document.getElementById('simClockReadout').textContent = now.toLocaleString('en-IN', {
+        day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+      });
+
+      const isNov2Unlocked = now >= NOV2_TARGET;
+      const isNov5Unlocked = now >= NOV5_TARGET;
+      const autoSwitch = document.getElementById('autoSwitchToggle').checked;
+
+      if (isNov2Unlocked && !wasNov2Unlocked) {
+        wasNov2Unlocked = true;
+        sfxWin();
+        launchConfetti();
+        showUnlockToast('🤝 Happy Friendship Day! 3 Years Since 7:45 PM Just Unlocked!');
+        if (autoSwitch) setTimeout(() => switchView('nov2View'), 1100);
+      }
+
+      if (isNov5Unlocked && !wasNov5Unlocked) {
+        wasNov5Unlocked = true;
+        sfxWin();
+        launchConfetti();
+        showUnlockToast('🎂 Happy 17th Birthday, My Love! 5 November Surprise Unlocked!');
+        if (autoSwitch) setTimeout(() => switchView('nov5View'), 1100);
+      }
+
+      const activeTarget = !isNov2Unlocked ? NOV2_TARGET : NOV5_TARGET;
+      const diff = Math.max(0, activeTarget - now);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+      const totalHours = Math.floor(diff / (1000 * 60 * 60));
+
+      // Animate seconds pulse & play countdown tick in final 10 seconds
+      if (secs !== lastSecondValue) {
+        lastSecondValue = secs;
+        const secEl = document.getElementById('cdSecs');
+        secEl.classList.add('tick-pop');
+        setTimeout(() => secEl.classList.remove('tick-pop'), 160);
+        if (diff > 0 && diff <= 10500) {
+          sfxTick();
+        }
+      }
+
+      document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+      document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
+
+      document.getElementById('totalHoursText').textContent =
+        `${days} Days, ${hours} Hours, ${mins} Mins, ${secs} Secs`;
+      document.getElementById('rawTotalHours').textContent = totalHours;
+
+      // Update live 3-year friendship duration counter
+      const friendDiff = Math.max(0, now - FIRST_MEET_2023);
+      const fDays = Math.floor(friendDiff / (1000 * 60 * 60 * 24));
+      const fHours = Math.floor(friendDiff / (1000 * 60 * 60));
+      document.getElementById('friendshipDurationText').textContent =
+        `3 Years • ${fDays.toLocaleString()} Days • ${fHours.toLocaleString()} Hours Together 💖`;
+
+      document.getElementById('stepNov2').classList.toggle('unlocked', isNov2Unlocked);
+      document.getElementById('stepNov5').classList.toggle('unlocked', isNov5Unlocked);
+      document.getElementById('iconNov2').textContent = isNov2Unlocked ? '✨' : '🔒';
+      document.getElementById('iconNov5').textContent = isNov5Unlocked ? '🎂' : '🔒';
+
+      const chapterTabs = document.getElementById('chapterTabs');
+      const unlockActions = document.getElementById('unlockActions');
+      chapterTabs.classList.toggle('hidden', !isNov2Unlocked && !isNov5Unlocked);
+      unlockActions.classList.toggle('hidden', !isNov2Unlocked && !isNov5Unlocked);
+
+      document.getElementById('tabNov2').classList.toggle('hidden', !isNov2Unlocked);
+      document.getElementById('openNov2Btn').classList.toggle('hidden', !isNov2Unlocked);
+      document.getElementById('tabNov5').classList.toggle('hidden', !isNov5Unlocked);
+      document.getElementById('openNov5Btn').classList.toggle('hidden', !isNov5Unlocked);
+
+      const headline = document.getElementById('timerHeadline');
+      const badge = document.getElementById('ActivePhaseBadge');
+      if (!isNov2Unlocked) {
+        badge.textContent = '🔒 NEXT SURPRISE: 2 NOV • 7:45 PM';
+        headline.textContent = 'Counting Down to Surprise #1...';
+      } else if (!isNov5Unlocked) {
+        badge.textContent = '✨ FRIENDSHIP DAY OPEN! NEXT: 5 NOV BDAY';
+        headline.textContent = 'Surprise #1 is Open! Counting Down to 5 Nov...';
+      } else {
+        badge.textContent = '🎉 ALL SURPRISES UNLOCKED!';
+        headline.textContent = 'Happy Friendship Day & Happy 17th Birthday! 💖';
+      }
+    }
+
+    setInterval(updateCountdownAndStage, 250);
+    updateCountdownAndStage();
+
+    // ====================================================
+    // 5. MINI-GAMES ARCADE
+    // ====================================================
+    document.querySelectorAll('.game-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        sfxPop();
+        document.querySelectorAll('.game-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.game).classList.add('active');
+      });
+    });
+
+    // GAME 1: HEART CATCHER
+    const g1Canvas = document.getElementById('heartCatcherCanvas');
+    const g1Ctx = g1Canvas.getContext('2d');
+    let g1Running = false, g1Score = 0, g1Combo = 1, g1Streak = 0, g1Lives = 3;
+    let targetBasketX = 160, basketX = 160;
+    let fallingItems = [], g1Particles = [], floatingTexts = [];
+
+    function setBasketTarget(clientX) {
+      const rect = g1Canvas.getBoundingClientRect();
+      const scaleX = g1Canvas.width / rect.width;
+      targetBasketX = (clientX - rect.left) * scaleX - 42;
+      targetBasketX = Math.max(8, Math.min(g1Canvas.width - 92, targetBasketX));
+    }
+
+    g1Canvas.addEventListener('mousemove', e => setBasketTarget(e.clientX));
+    g1Canvas.addEventListener('touchmove', e => {
+      e.preventDefault();
+      setBasketTarget(e.touches[0].clientX);
+    }, { passive: false });
+
+    function spawnBurst(x, y, color) {
+      for (let i = 0; i < 12; i++) {
+        const angle = (Math.PI * 2 * i) / 12;
+        const speed = 1.5 + Math.random() * 2.5;
+        g1Particles.push({ x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, alpha: 1, color });
+      }
+    }
+
+    function updateG1HUD() {
+      document.getElementById('g1Score').textContent = g1Score;
+      document.getElementById('g1Combo').textContent = `${g1Combo}x`;
+      document.getElementById('g1Lives').textContent = '❤️'.repeat(Math.max(0, g1Lives)) || '💔';
+    }
+
+    document.getElementById('g1StartBtn').addEventListener('click', () => {
+      sfxPop();
+      g1Score = 0; g1Combo = 1; g1Streak = 0; g1Lives = 3;
+      fallingItems = []; g1Particles = []; floatingTexts = [];
+      g1Running = true;
+      updateG1HUD();
+      document.getElementById('g1Msg').textContent = 'Slide your finger to catch hearts & build combos!';
+      document.getElementById('g1StartBtn').textContent = '🔄 Restart Game';
+    });
+
+    function g1Loop() {
+      g1Ctx.clearRect(0, 0, g1Canvas.width, g1Canvas.height);
+      basketX += (targetBasketX - basketX) * 0.25;
+
+      g1Ctx.save();
+      g1Ctx.shadowColor = '#ff3b82';
+      g1Ctx.shadowBlur = 16;
+      const grad = g1Ctx.createLinearGradient(basketX, 0, basketX + 84, 0);
+      grad.addColorStop(0, '#ff3b82');
+      grad.addColorStop(0.5, '#ff8fab');
+      grad.addColorStop(1, '#ff3b82');
+      g1Ctx.fillStyle = grad;
+      g1Ctx.beginPath();
+      g1Ctx.roundRect(basketX, g1Canvas.height - 30, 84, 15, 10);
+      g1Ctx.fill();
+      g1Ctx.restore();
+
+      if (g1Running) {
+        if (Math.random() < 0.045) {
+          const rand = Math.random();
+          let type = 'heart', emoji = '💖';
+          if (rand > 0.84) { type = 'cloud'; emoji = '⛈️'; }
+          else if (rand > 0.68) { type = 'gold'; emoji = '🌟'; }
+          const startX = Math.random() * (g1Canvas.width - 50) + 25;
+          fallingItems.push({
+            x: startX, baseX: startX, y: -20,
+            swayAmp: 12 + Math.random() * 18,
+            swaySpeed: 0.03 + Math.random() * 0.02,
+            phase: Math.random() * Math.PI * 2,
+            speed: 1.9 + Math.random() * 1.4 + Math.min(1.5, g1Score / 400),
+            type, emoji
+          });
+        }
+
+        for (let i = fallingItems.length - 1; i >= 0; i--) {
+          const item = fallingItems[i];
+          item.y += item.speed;
+          item.phase += item.swaySpeed;
+          item.x = item.baseX + Math.sin(item.phase) * item.swayAmp;
+
+          g1Ctx.font = '24px sans-serif';
+          g1Ctx.textAlign = 'center';
+          g1Ctx.fillText(item.emoji, item.x, item.y);
+
+          const caught = item.y >= g1Canvas.height - 38 && item.y <= g1Canvas.height - 10 &&
+                         item.x >= basketX - 8 && item.x <= basketX + 92;
+
+          if (caught) {
+            if (item.type === 'cloud') {
+              g1Lives--; g1Streak = 0; g1Combo = 1;
+              sfxDamage();
+              spawnBurst(item.x, item.y, '#ef4444');
+              floatingTexts.push({ x: item.x, y: item.y, text: 'Ouch! -1 ❤️', color: '#f87171', alpha: 1 });
+              if (g1Lives <= 0) {
+                g1Running = false;
+                document.getElementById('g1Msg').textContent = `Game Over! Score: ${g1Score}. Tap Restart to play again!`;
+              }
+            } else {
+              g1Streak++;
+              g1Combo = Math.min(4, 1 + Math.floor(g1Streak / 4));
+              const pts = (item.type === 'gold' ? 30 : 10) * g1Combo;
+              g1Score += pts;
+              sfxCatch(item.type === 'gold');
+              spawnBurst(item.x, item.y, item.type === 'gold' ? '#fbbf24' : '#ff3b82');
+              floatingTexts.push({ x: item.x, y: item.y, text: `+${pts}`, color: item.type === 'gold' ? '#fde047' : '#ff9ebb', alpha: 1 });
+              if (g1Score >= 200) {
+                document.getElementById('g1Msg').textContent = '💖 Hint: 7:45 PM & 5 November are our two magical dates!';
+              }
+            }
+            updateG1HUD();
+            fallingItems.splice(i, 1);
+          } else if (item.y > g1Canvas.height + 18) {
+            if (item.type !== 'cloud') { g1Streak = 0; g1Combo = 1; updateG1HUD(); }
+            fallingItems.splice(i, 1);
+          }
+        }
+      } else {
+        g1Ctx.fillStyle = 'rgba(255,255,255,0.88)';
+        g1Ctx.font = 'bold 15px Plus Jakarta Sans, sans-serif';
+        g1Ctx.textAlign = 'center';
+        g1Ctx.fillText(g1Lives <= 0 ? `Game Over! Score: ${g1Score}` : 'Tap "Start Game" Below!', g1Canvas.width / 2, g1Canvas.height / 2 - 8);
+        g1Ctx.font = '12px Plus Jakarta Sans, sans-serif';
+        g1Ctx.fillStyle = 'rgba(255,190,220,0.75)';
+        g1Ctx.fillText('Slide finger to catch 💖 (+10) & 🌟 (+30)!', g1Canvas.width / 2, g1Canvas.height / 2 + 16);
+      }
+
+      for (let i = g1Particles.length - 1; i >= 0; i--) {
+        const p = g1Particles[i];
+        p.x += p.vx; p.y += p.vy; p.alpha -= 0.03;
+        if (p.alpha <= 0) { g1Particles.splice(i, 1); continue; }
+        g1Ctx.fillStyle = p.color; g1Ctx.globalAlpha = p.alpha;
+        g1Ctx.beginPath(); g1Ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); g1Ctx.fill();
+        g1Ctx.globalAlpha = 1;
+      }
+
+      for (let i = floatingTexts.length - 1; i >= 0; i--) {
+        const ft = floatingTexts[i];
+        ft.y -= 1.2; ft.alpha -= 0.025;
+        if (ft.alpha <= 0) { floatingTexts.splice(i, 1); continue; }
+        g1Ctx.font = 'bold 13px Plus Jakarta Sans, sans-serif';
+        g1Ctx.fillStyle = ft.color; g1Ctx.globalAlpha = ft.alpha;
+        g1Ctx.textAlign = 'center'; g1Ctx.fillText(ft.text, ft.x, ft.y);
+        g1Ctx.globalAlpha = 1;
+      }
+
+      requestAnimationFrame(g1Loop);
+    }
+    g1Loop();
+
+    // GAME 2: 3D MEMORY MATCH
+    const memIcons = ['💖', '🌸', '✨', '🎂', '🦋', '💌', '👑', '🌙'];
+    let flippedCards = [], g2Moves = 0, g2Seconds = 0, g2TimerInterval = null, g2Started = false;
+
+    const savedBest = localStorage.getItem('surprise_mem_best');
+    if (savedBest) document.getElementById('g2Best').textContent = `${savedBest}`;
+
+    function initMemoryGame() {
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = '';
+      const deck = [...memIcons, ...memIcons].sort(() => Math.random() - 0.5);
+      flippedCards = []; g2Moves = 0; g2Seconds = 0; g2Started = false;
+      clearInterval(g2TimerInterval);
+      document.getElementById('g2Moves').textContent = '0';
+      document.getElementById('g2Timer').textContent = '0s';
+      document.getElementById('g2Msg').textContent = 'Tap any card to flip in 3D!';
+
+      deck.forEach((icon) => {
+        const card = document.createElement('div');
+        card.className = 'mem-card';
+        card.dataset.icon = icon;
+        card.innerHTML = `<div class="mem-face mem-front">✦</div><div class="mem-face mem-back">${icon}</div>`;
+        card.addEventListener('click', () => flipCard(card));
+        grid.appendChild(card);
+      });
+    }
+
+    function flipCard(card) {
+      if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+      if (!g2Started) {
+        g2Started = true;
+        g2TimerInterval = setInterval(() => {
+          g2Seconds++;
+          document.getElementById('g2Timer').textContent = `${g2Seconds}s`;
+        }, 1000);
+      }
+      sfxPop();
+      card.classList.add('flipped');
+      flippedCards.push(card);
+
+      if (flippedCards.length === 2) {
+        g2Moves++;
+        document.getElementById('g2Moves').textContent = g2Moves;
+        const [c1, c2] = flippedCards;
+        if (c1.dataset.icon === c2.dataset.icon) {
+          c1.classList.add('matched'); c2.classList.add('matched');
+          flippedCards = [];
+          sfxCatch(true);
+          if (document.querySelectorAll('.mem-card.matched').length === 16) {
+            clearInterval(g2TimerInterval);
+            sfxWin();
+            const prevBest = parseInt(localStorage.getItem('surprise_mem_best') || '999', 10);
+            if (g2Moves < prevBest) {
+              localStorage.setItem('surprise_mem_best', g2Moves);
+              document.getElementById('g2Best').textContent = `${g2Moves}`;
+            }
+            document.getElementById('g2Msg').textContent = `🎉 Yay! Matched all pairs in ${g2Moves} moves!`;
+          }
+        } else {
+          setTimeout(() => {
+            c1.classList.remove('flipped'); c2.classList.remove('flipped');
+            flippedCards = [];
+          }, 650);
+        }
+      }
+    }
+    document.getElementById('g2ResetBtn').addEventListener('click', () => { sfxPop(); initMemoryGame(); });
+    initMemoryGame();
+
+    // GAME 3: SOAP BUBBLES
+    const compliments = [
+      "You have the cutest smile ever! 💖",
+      "3 years of being my best friend & my love ✨",
+      "Our first talk at 7:45 PM changed my life 🌟",
+      "You make my whole day 100x happier 🌸",
+      "I am so lucky to have you in my life! 🤍",
+      "Sweet 17 looks so pretty on you 👑",
+      "Talking to you is my favorite part of every day 🎶"
+    ];
+    let g3Popped = 0;
+    const bubbleArena = document.getElementById('bubbleArena');
+    const bubbleNote = document.getElementById('bubbleFloatingNote');
+    let activeSoapBubbles = [];
+
+    function spawnSoapBubble() {
+      const size = 44 + Math.random() * 22;
+      const el = document.createElement('div');
+      el.className = 'pop-bubble';
+      el.style.width = `${size}px`; el.style.height = `${size}px`;
+      el.textContent = ['💖', '✨', '🌸', '🦋', '👑'][Math.floor(Math.random() * 5)];
+
+      const bubbleObj = {
+        el,
+        x: Math.random() * (bubbleArena.clientWidth - size - 20) + 10,
+        y: bubbleArena.clientHeight + size,
+        vy: 0.85 + Math.random() * 0.85,
+        swayAmp: 12 + Math.random() * 14,
+        phase: Math.random() * Math.PI * 2,
+        size
+      };
+
+      el.addEventListener('pointerdown', (e) => {
+        e.stopPropagation();
+        sfxPop();
+        g3Popped++;
+        document.getElementById('g3Score').textContent = g3Popped;
+        bubbleNote.textContent = compliments[g3Popped % compliments.length];
+
+        for (let i = 0; i < 10; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'bubble-burst-dot';
+          const angle = (Math.PI * 2 * i) / 10;
+          const dist = 24 + Math.random() * 18;
+          dot.style.left = `${bubbleObj.x + size / 2}px`;
+          dot.style.top = `${bubbleObj.y + size / 2}px`;
+          dot.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+          dot.style.setProperty('--dy', `${Math.sin(angle) * dist}px`);
+          bubbleArena.appendChild(dot);
+          setTimeout(() => dot.remove(), 450);
+        }
+        el.remove();
+        activeSoapBubbles = activeSoapBubbles.filter(b => b !== bubbleObj);
+      });
+
+      bubbleArena.appendChild(el);
+      activeSoapBubbles.push(bubbleObj);
+    }
+
+    function updateSoapBubbles() {
+      if (document.getElementById('game3').classList.contains('active') && Math.random() < 0.035 && activeSoapBubbles.length < 10) {
+        spawnSoapBubble();
+      }
+      for (let i = activeSoapBubbles.length - 1; i >= 0; i--) {
+        const b = activeSoapBubbles[i];
+        b.y -= b.vy; b.phase += 0.04;
+        b.el.style.transform = `translate(${b.x + Math.sin(b.phase) * b.swayAmp}px, ${b.y}px)`;
+        if (b.y < -70) { b.el.remove(); activeSoapBubbles.splice(i, 1); }
+      }
+      requestAnimationFrame(updateSoapBubbles);
+    }
+    updateSoapBubbles();
+
+    document.getElementById('g3SpawnBtn').addEventListener('click', () => {
+      sfxPop();
+      for (let i = 0; i < 6; i++) setTimeout(spawnSoapBubble, i * 130);
+    });
+
+    // GAME 4: STARLIGHT CONSTELLATION
+    const starCanvas = document.getElementById('starCanvas');
+    const sCtx = starCanvas.getContext('2d');
+    const heartStarPoints = [
+      { x: 200, y: 90 },  { x: 145, y: 50 },  { x: 85, y: 72 },
+      { x: 70, y: 135 },  { x: 120, y: 198 }, { x: 200, y: 250 },
+      { x: 280, y: 198 }, { x: 330, y: 135 }, { x: 315, y: 72 },
+      { x: 255, y: 50 }
+    ];
+    let currentStarIndex = 0, pointerPos = null, starPulse = 0;
+    let bgStars = Array.from({ length: 45 }, () => ({
+      x: Math.random() * 400, y: Math.random() * 280, r: Math.random() * 1.6 + 0.4, phase: Math.random() * Math.PI * 2
+    }));
+
+    function checkStarHit(clientX, clientY) {
+      if (currentStarIndex >= heartStarPoints.length) return;
+      const rect = starCanvas.getBoundingClientRect();
+      const x = (clientX - rect.left) * (starCanvas.width / rect.width);
+      const y = (clientY - rect.top) * (starCanvas.height / rect.height);
+      pointerPos = { x, y };
+
+      const target = heartStarPoints[currentStarIndex];
+      if (Math.hypot(x - target.x, y - target.y) < 28) {
+        currentStarIndex++;
+        sfxCatch(currentStarIndex === 10);
+        document.getElementById('g4Progress').textContent = `${currentStarIndex}/10`;
+        if (currentStarIndex === 10) {
+          pointerPos = null; sfxWin();
+          document.getElementById('g4Msg').textContent = '💖 You drew our Starlight Heart in the sky!';
+        } else {
+          document.getElementById('g4Msg').textContent = `Awesome! Now connect to Star #${currentStarIndex + 1}!`;
+        }
+      }
+    }
+
+    starCanvas.addEventListener('pointerdown', e => checkStarHit(e.clientX, e.clientY));
+    starCanvas.addEventListener('pointermove', e => {
+      if (e.buttons > 0 || e.pointerType === 'touch') checkStarHit(e.clientX, e.clientY);
+    });
+    starCanvas.addEventListener('pointerup', () => { pointerPos = null; });
+
+    function animateStarCanvas() {
+      sCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+      starPulse += 0.06;
+
+      bgStars.forEach(s => {
+        s.phase += 0.03;
+        sCtx.fillStyle = `rgba(255, 255, 255, ${0.25 + Math.sin(s.phase) * 0.25})`;
+        sCtx.beginPath(); sCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2); sCtx.fill();
+      });
+
+      if (currentStarIndex === heartStarPoints.length) {
+        sCtx.fillStyle = 'rgba(255, 59, 130, 0.24)';
+        sCtx.beginPath();
+        sCtx.moveTo(heartStarPoints[0].x, heartStarPoints[0].y);
+        heartStarPoints.forEach(pt => sCtx.lineTo(pt.x, pt.y));
+        sCtx.closePath(); sCtx.fill();
+      }
+
+      if (currentStarIndex > 0) {
+        sCtx.save();
+        sCtx.strokeStyle = '#ff3b82'; sCtx.shadowColor = '#ff3b82'; sCtx.shadowBlur = 12; sCtx.lineWidth = 3;
+        sCtx.beginPath();
+        sCtx.moveTo(heartStarPoints[0].x, heartStarPoints[0].y);
+        for (let i = 1; i < currentStarIndex; i++) sCtx.lineTo(heartStarPoints[i].x, heartStarPoints[i].y);
+        if (currentStarIndex === heartStarPoints.length) sCtx.lineTo(heartStarPoints[0].x, heartStarPoints[0].y);
+        else if (pointerPos) sCtx.lineTo(pointerPos.x, pointerPos.y);
+        sCtx.stroke();
+        sCtx.restore();
+      }
+
+      heartStarPoints.forEach((pt, idx) => {
+        const isConnected = idx < currentStarIndex;
+        const isNext = idx === currentStarIndex;
+        if (isNext) {
+          sCtx.beginPath();
+          sCtx.arc(pt.x, pt.y, 16 + Math.sin(starPulse) * 4, 0, Math.PI * 2);
+          sCtx.strokeStyle = 'rgba(255, 183, 3, 0.8)'; sCtx.lineWidth = 2; sCtx.stroke();
+        }
+        sCtx.beginPath();
+        sCtx.arc(pt.x, pt.y, isConnected ? 12 : 10, 0, Math.PI * 2);
+        sCtx.fillStyle = isConnected ? '#ff3b82' : (isNext ? '#ffb703' : 'rgba(255,255,255,0.22)');
+        sCtx.fill();
+        sCtx.fillStyle = '#fff'; sCtx.font = 'bold 11px Plus Jakarta Sans, sans-serif';
+        sCtx.textAlign = 'center'; sCtx.textBaseline = 'middle';
+        sCtx.fillText(idx + 1, pt.x, pt.y);
+      });
+
+      requestAnimationFrame(animateStarCanvas);
+    }
+    animateStarCanvas();
+
+    document.getElementById('g4ResetBtn').addEventListener('click', () => {
+      sfxPop();
+      currentStarIndex = 0; pointerPos = null;
+      document.getElementById('g4Progress').textContent = '0/10';
+      document.getElementById('g4Msg').textContent = 'Tap or drag from glowing Star #1!';
+    });
+
+    // ====================================================
+    // 6. FRIENDSHIP ENVELOPES, CAKE CANDLES & 17 REASONS
+    // ====================================================
+    document.querySelectorAll('.envelope-card').forEach(card => {
+      card.addEventListener('click', () => {
+        sfxEnvelope();
+        card.classList.add('opened');
+        card.querySelector('.env-icon').textContent = '💖';
+        card.querySelector('.env-title').textContent = card.dataset.note;
+        card.querySelector('.env-tap').textContent = 'Opened with love ✨';
+      });
+    });
+
+    document.querySelectorAll('.promise-item').forEach(item => {
+      item.addEventListener('click', () => {
+        sfxCatch(true);
+        item.classList.toggle('checked');
+      });
+    });
+
+    function blowOutCandles() {
+      sfxWin();
+      launchConfetti();
+      document.getElementById('flame1').classList.add('out');
+      document.getElementById('flame7').classList.add('out');
+      document.getElementById('wishUnlockedMsg').classList.remove('hidden');
+    }
+
+    document.getElementById('candle1').addEventListener('click', blowOutCandles);
+    document.getElementById('candle7').addEventListener('click', blowOutCandles);
+    document.getElementById('blowCandlesBtn').addEventListener('click', blowOutCandles);
+    document.getElementById('extraConfettiBtn').addEventListener('click', () => {
+      sfxWin();
+      launchConfetti();
+    });
+
+    // 17 Simple, Realistic & Sweet Reasons for Her 17th Birthday
+    const reasons17 = [
+      "Your smile—it honestly fixes my whole day in one second.",
+      "How our first talk at 7:45 PM three years ago turned into the best bond ever.",
+      "Because you are my best friend first, and my girlfriend second.",
+      "How easy it is to talk to you about literally anything for hours.",
+      "The way you care about the people you love with all your heart.",
+      "Your cute laugh that always makes me smile too.",
+      "How you understand what I'm feeling even when I don't say a word.",
+      "Every single funny memory and inside joke we've made in 3 years.",
+      "How peaceful and happy I feel whenever I'm with you.",
+      "The cute expressions you make when you're excited or happy.",
+      "How you always support me and make me want to do better.",
+      "Because even a boring day feels special when I talk to you.",
+      "How you stayed my truest friend through every up and down for 3 years.",
+      "Because seeing your name pop up on my phone still makes me happy.",
+      "Your kind heart—you are genuinely the sweetest person I know.",
+      "How amazing, confident, and beautiful you are as you turn 17 today.",
+      "Simply because you are YOU—my best friend and my love! Happy 17th Birthday! 💖"
+    ];
+
+    let rIdx = 0;
+    function updateReasonDisplay() {
+      sfxPop();
+      document.getElementById('reasonNumber').textContent = `Thing #${rIdx + 1} of 17`;
+      document.getElementById('reasonText').textContent = `"${reasons17[rIdx]}"`;
+    }
+    document.getElementById('prevReasonBtn').addEventListener('click', () => {
+      rIdx = (rIdx - 1 + reasons17.length) % reasons17.length;
+      updateReasonDisplay();
+    });
+    document.getElementById('nextReasonBtn').addEventListener('click', () => {
+      rIdx = (rIdx + 1) % reasons17.length;
+      updateReasonDisplay();
+    });
+
+    // AMBIENT BACKGROUND PARTICLES
+    const bgCanvas = document.getElementById('bgCanvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeBg() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeBg);
+    resizeBg();
+
+    for (let i = 0; i < 35; i++) {
+      particles.push({
+        x: Math.random() * bgCanvas.width,
+        y: Math.random() * bgCanvas.height,
+        r: Math.random() * 2.2 + 0.8,
+        vy: -0.3 - Math.random() * 0.5
+      });
+    }
+
+    function animateBg() {
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      bgCtx.fillStyle = 'rgba(255, 182, 210, 0.35)';
+      particles.forEach(p => {
+        p.y += p.vy;
+        if (p.y < 0) p.y = bgCanvas.height;
+        bgCtx.beginPath();
+        bgCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        bgCtx.fill();
+      });
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+  </script>
+</body>
+</html>
