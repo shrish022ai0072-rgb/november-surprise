@@ -72,7 +72,7 @@
       min-height: 100vh;
       overflow-x: hidden;
       transition: background 0.4s ease, color 0.4s ease;
-      padding-bottom: 90px; /* space for mobile bottom nav */
+      padding-bottom: 90px;
     }
 
     #bgCanvas, #confettiCanvas {
@@ -88,7 +88,6 @@
       z-index: 100;
     }
 
-    /* TOUCH HEART BURST FOR SMARTPHONES */
     .touch-heart {
       position: fixed;
       pointer-events: none;
@@ -102,7 +101,6 @@
       100% { transform: translate(calc(-50% + var(--tx)), calc(-50% - 65px)) scale(1.35) rotate(var(--rot)); opacity: 0; }
     }
 
-    /* TOP NAVIGATION BAR */
     .top-nav {
       position: sticky;
       top: 0;
@@ -192,73 +190,6 @@
       box-shadow: 0 0 12px var(--accent-glow);
     }
 
-    /* REAL-TIME SIMULATOR PANEL */
-    .creator-bar {
-      position: relative;
-      z-index: 45;
-      background: rgba(15, 6, 28, 0.95);
-      backdrop-filter: blur(16px);
-      border-bottom: 2px solid var(--accent);
-      padding: 0.85rem 0.9rem;
-      color: #fff;
-      font-size: 0.78rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .sim-grid {
-      max-width: 760px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .sim-top-row, .sim-controls-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .sim-clock-badge {
-      font-family: 'Space Mono', monospace;
-      background: rgba(255, 59, 130, 0.22);
-      border: 1px solid var(--accent);
-      padding: 0.28rem 0.65rem;
-      border-radius: 8px;
-      font-size: 0.76rem;
-      color: #ffd1e3;
-    }
-
-    .sim-input {
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 0.32rem 0.55rem;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 0.75rem;
-    }
-
-    .stage-btn {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 0.35rem 0.65rem;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .stage-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    /* SMARTPHONE FLOATING BOTTOM NAVIGATION BAR */
     .chapter-tabs {
       position: fixed;
       bottom: 14px;
@@ -301,7 +232,6 @@
       transform: scale(1.03);
     }
 
-    /* UNLOCK TOAST BANNER */
     .unlock-toast {
       position: fixed;
       top: 70px;
@@ -326,7 +256,6 @@
       to { transform: translate(-50%, 0); opacity: 1; }
     }
 
-    /* MAIN CONTAINER & CARDS */
     .container {
       position: relative;
       z-index: 10;
@@ -399,7 +328,6 @@
       margin: 0 auto 1.15rem;
     }
 
-    /* MILESTONE TRACKER */
     .milestone-track {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -447,7 +375,6 @@
       background: var(--card-border);
     }
 
-    /* COUNTDOWN GRID WITH 3D PULSE */
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -549,7 +476,6 @@
       transform: scale(0.94);
     }
 
-    /* MINI ARCADE SECTION */
     .section-header {
       text-align: center;
       margin: 1.4rem 0 0.85rem;
@@ -660,7 +586,6 @@
       min-height: 1.2em;
     }
 
-    /* 3D MEMORY CARDS */
     .memory-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -708,7 +633,6 @@
       font-size: 1.55rem;
     }
 
-    /* SOAP BUBBLE ARENA */
     .bubble-arena {
       position: relative;
       width: 100%;
@@ -771,7 +695,6 @@
       to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
     }
 
-    /* FRIENDSHIP & BIRTHDAY CONTENT STYLES */
     .friendship-live-counter {
       background: linear-gradient(135deg, rgba(255, 59, 130, 0.18), rgba(168, 85, 247, 0.18));
       border: 1px solid var(--card-border);
@@ -891,7 +814,6 @@
       line-height: 1.5;
     }
 
-    /* ENVELOPE CARDS */
     .envelope-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -942,7 +864,6 @@
       font-weight: 600;
     }
 
-    /* PROMISE CHECKLIST CARDS (NOV 5) */
     .promise-list {
       display: flex;
       flex-direction: column;
@@ -1011,7 +932,6 @@
       text-align: center;
     }
 
-    /* CAKE & CANDLES */
     .cake-illustration {
       display: flex;
       flex-direction: column;
@@ -1149,12 +1069,10 @@
   <canvas id="bgCanvas"></canvas>
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- Live Unlock Notification Banner -->
   <div id="unlockToast" class="unlock-toast hidden">
     <span id="toastText">🎉 A New Surprise Just Unlocked!</span>
   </div>
 
-  <!-- Top Smartphone-Friendly Header -->
   <header class="top-nav">
     <div class="brand">
       <span class="sparkle-dot"></span>
@@ -1170,46 +1088,9 @@
         <button class="theme-btn" data-set-theme="golden" title="Golden Hour">✨</button>
         <button class="theme-btn" data-set-theme="lavender" title="Dreamy Lavender">💜</button>
       </div>
-      <button id="previewToggleBtn" class="preview-pill">🔑 Test</button>
     </div>
   </header>
 
-  <!-- REAL-TIME SIMULATION LABORATORY (Toggle via Test button) -->
-  <div id="creatorBar" class="creator-bar hidden">
-    <div class="sim-grid">
-      <div class="sim-top-row">
-        <span>🧪 <strong>Real-Time Simulator</strong> (Test how the site works live!)</span>
-        <div class="sim-clock-badge">
-          🕒 <strong id="simClockReadout">Loading...</strong>
-          <span id="simModeTag">(LIVE)</span>
-        </div>
-      </div>
-
-      <div class="sim-controls-row">
-        <span>⚡ <strong>Live Unlock Test:</strong></span>
-        <button class="stage-btn active" id="btnRealTime">🟢 Real Time</button>
-        <button class="stage-btn" id="btn10sNov2">⏳ 10s Before Friendship Day (7:44:50 PM)</button>
-        <button class="stage-btn" id="btn10sNov5">🎂 10s Before 5 Nov Bday (11:59:50 PM)</button>
-        <label style="display:flex; align-items:center; gap:4px; margin-left:auto; cursor:pointer;">
-          <input type="checkbox" id="autoSwitchToggle" checked />
-          Auto-open when timer hits 00:00:00
-        </label>
-      </div>
-
-      <div class="sim-controls-row">
-        <span>📅 <strong>Pick Any Time:</strong></span>
-        <input type="datetime-local" id="customSimDateInput" step="1" class="sim-input" />
-        <button class="stage-btn" id="applyCustomDateBtn">▶ Jump</button>
-
-        <span style="margin-left:auto;">⏩ <strong>Speed:</strong></span>
-        <button class="stage-btn speed-btn active" data-speed="1">1x</button>
-        <button class="stage-btn speed-btn" data-speed="60">60x</button>
-        <button class="stage-btn speed-btn" data-speed="3600">3600x</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Smartphone Floating Bottom App Bar (Appears when unlocked) -->
   <nav id="chapterTabs" class="chapter-tabs hidden">
     <button class="tab-btn active" data-view="timerView">⏳ Timer & Games</button>
     <button class="tab-btn hidden" id="tabNov2" data-view="nov2View">🤝 Friendship Day</button>
@@ -1218,9 +1099,7 @@
 
   <main class="container">
 
-    <!-- ===================================================
-         VIEW 1: SPOILER-FREE COUNTDOWN & MINI-GAMES
-         =================================================== -->
+    <!-- VIEW 1: SPOILER-FREE COUNTDOWN & MINI-GAMES -->
     <section id="timerView" class="view-section active">
       <div class="glass-card hero-timer-card">
         <div class="badge-pill" id="ActivePhaseBadge">🔒 TWO SECRET SURPRISES INSIDE</div>
@@ -1229,7 +1108,6 @@
           I made this little website just for you. Two special surprises are locked inside! Don't peek yet—play the mini-games below while the timer counts down. 💖
         </p>
 
-        <!-- Dual Milestone Progress -->
         <div class="milestone-track">
           <div class="milestone-step" id="stepNov2">
             <div class="step-icon" id="iconNov2">🔒</div>
@@ -1248,7 +1126,6 @@
           </div>
         </div>
 
-        <!-- Digital Countdown -->
         <div class="countdown-grid">
           <div class="time-box">
             <span class="mono-num" id="cdDays">00</span>
@@ -1280,7 +1157,6 @@
         </div>
       </div>
 
-      <!-- UPGRADED REALISTIC ARCADE -->
       <div class="arcade-section">
         <div class="section-header">
           <h2 class="serif-title">Cute Time-Pass Arcade 🎮</h2>
@@ -1373,9 +1249,7 @@
       </div>
     </section>
 
-    <!-- ===================================================
-         VIEW 2: SURPRISE #1 — HAPPY FRIENDSHIP DAY (3 YEARS)
-         =================================================== -->
+    <!-- VIEW 2: SURPRISE #1 — HAPPY FRIENDSHIP DAY (3 YEARS) -->
     <section id="nov2View" class="view-section">
       <div class="glass-card milestone-hero">
         <div class="badge-pill">✨ SURPRISE #1 UNLOCKED • 7:45 PM</div>
@@ -1384,13 +1258,11 @@
           Happy 3 Years of Friendship to my favorite person! 3 years ago at <strong>7:45 PM</strong>, we had our very first interaction. Back then, I had no idea that one simple talk would make you my closest friend and the love of my life.
         </p>
 
-        <!-- Live 3-Year Friendship Counter -->
         <div class="friendship-live-counter">
           <h4>⏳ Time Since Our First Interaction at 7:45 PM</h4>
           <p id="friendshipDurationText">3 Years • 1,095+ Days • 26,280+ Hours of Us 💖</p>
         </div>
 
-        <!-- Realistic Chat Memory Replay -->
         <div class="chat-capsule">
           <div class="chat-header">
             <span class="live-dot"></span>
@@ -1412,7 +1284,6 @@
           </div>
         </div>
 
-        <!-- Realistic 3-Year Story in Simple Language -->
         <h2 class="serif-title section-sub">How 3 Years Turned Into Forever ✨</h2>
         <div class="timeline">
           <div class="timeline-item">
@@ -1438,7 +1309,6 @@
           </div>
         </div>
 
-        <!-- Tap to Open Envelopes -->
         <h2 class="serif-title section-sub">Tap to Open Little Friendship Notes 💌</h2>
         <div class="envelope-grid">
           <div class="envelope-card" data-note="I still smile whenever I think about how we first talked at 7:45 PM. That moment changed my life! 🌟">
@@ -1470,9 +1340,7 @@
       </div>
     </section>
 
-    <!-- ===================================================
-         VIEW 3: SURPRISE #2 — 5 NOV (HER 17TH BIRTHDAY!)
-         =================================================== -->
+    <!-- VIEW 3: SURPRISE #2 — 5 NOV (HER 17TH BIRTHDAY!) -->
     <section id="nov5View" class="view-section">
       <div class="glass-card birthday-hero">
         <div class="badge-pill gold-badge">👑 SURPRISE #2 UNLOCKED • 5 NOVEMBER</div>
@@ -1481,7 +1349,6 @@
           Today is <strong>5 November</strong>, and my favorite girl in the whole world just completed <strong>17 beautiful years</strong>! Happy Birthday to my best friend, my happiness, and my love.
         </p>
 
-        <!-- Interactive 17th Birthday Cake -->
         <div class="cake-stage glass-inner">
           <h3>🕯️ Close Your Eyes, Make a Wish & Blow Out Your Candles!</h3>
           <p class="game-hint">Tap the glowing "1" and "7" candles on your screen to blow them out!</p>
@@ -1506,7 +1373,6 @@
           <p id="wishUnlockedMsg" class="wish-msg hidden">🎉 Yay! Happy 17th Birthday, my love! I hope every single wish you just made comes true this year! 💖✨</p>
         </div>
 
-        <!-- 17 Reasons in Simple, Realistic Language -->
         <div class="reasons-box glass-inner">
           <h3>✨ 17 Things I Love About You (For Your 17th Birthday)</h3>
           <p class="game-hint">Tap Next to read all 17 things from my heart</p>
@@ -1520,7 +1386,6 @@
           </div>
         </div>
 
-        <!-- Interactive Birthday Wishes & Promises Checklist -->
         <div class="glass-inner">
           <h3>🌸 My Wishes & Promises for Your 17th Year</h3>
           <p class="game-hint">Tap each one to seal the promise with a heart!</p>
@@ -1544,7 +1409,6 @@
           </div>
         </div>
 
-        <!-- Heartfelt Birthday Letter in Simple Language -->
         <div class="letter-box glass-inner">
           <h3 class="serif-title">A Little Letter For Your 17th Birthday 💌</h3>
           <p class="letter-body">
@@ -1563,7 +1427,7 @@
 
   <script>
     // ====================================================
-    // 1. UPGRADED SOUND EFFECTS & MUSIC BOX ENGINE
+    // 1. SOUND EFFECTS & MUSIC BOX ENGINE
     // ====================================================
     let soundEnabled = true;
     let musicPlaying = false;
@@ -1642,7 +1506,6 @@
       });
     }
 
-    // Romantic Music Box Melody Loop
     const melodyNotes = [523.25, 659.25, 783.99, 659.25, 880.00, 783.99, 659.25, 587.33, 523.25, 587.33, 659.25, 523.25];
     let noteIdx = 0;
 
@@ -1672,7 +1535,6 @@
     // 2. SMARTPHONE TOUCH SPARKLE & HEART BURST
     // ====================================================
     document.addEventListener('pointerdown', (e) => {
-      // Spawn 2 cute floating hearts wherever she touches the phone screen
       for (let i = 0; i < 2; i++) {
         const h = document.createElement('span');
         h.className = 'touch-heart';
@@ -1746,108 +1608,23 @@
     }
 
     // ====================================================
-    // 4. REAL-TIME & SIMULATED CLOCK ENGINE
+    // 4. REAL-TIME PRODUCTION CLOCK ENGINE
     // ====================================================
     const TARGET_YEAR = new Date().getFullYear();
     const NOV2_TARGET = new Date(TARGET_YEAR, 10, 2, 19, 45, 0); // 2 Nov, 7:45:00 PM
     const NOV5_TARGET = new Date(TARGET_YEAR, 10, 5, 0, 0, 0);   // 5 Nov, 12:00:00 AM
-    const FIRST_MEET_2023 = new Date(TARGET_YEAR - 3, 10, 2, 19, 45, 0); // 3 years ago at 7:45 PM
+    const FIRST_MEET_2023 = new Date(TARGET_YEAR - 3, 10, 2, 19, 45, 0);
 
-    let simState = {
-      isSimulating: false,
-      simAnchorVirtualMs: Date.now(),
-      simAnchorRealMs: Date.now(),
-      speedMultiplier: 1
-    };
-
-    function getCurrentTime() {
-      if (!simState.isSimulating) return new Date();
-      const elapsedReal = Date.now() - simState.simAnchorRealMs;
-      return new Date(simState.simAnchorVirtualMs + elapsedReal * simState.speedMultiplier);
-    }
-
-    let wasNov2Unlocked = getCurrentTime() >= NOV2_TARGET;
-    let wasNov5Unlocked = getCurrentTime() >= NOV5_TARGET;
+    let wasNov2Unlocked = new Date() >= NOV2_TARGET;
+    let wasNov5Unlocked = new Date() >= NOV5_TARGET;
     let lastSecondValue = -1;
 
-    function setSimulatedTime(targetDateObj) {
-      simState.isSimulating = true;
-      simState.simAnchorVirtualMs = targetDateObj.getTime();
-      simState.simAnchorRealMs = Date.now();
-      wasNov2Unlocked = targetDateObj >= NOV2_TARGET;
-      wasNov5Unlocked = targetDateObj >= NOV5_TARGET;
-
-      const pad = n => String(n).padStart(2, '0');
-      const localIso = `${targetDateObj.getFullYear()}-${pad(targetDateObj.getMonth() + 1)}-${pad(targetDateObj.getDate())}T${pad(targetDateObj.getHours())}:${pad(targetDateObj.getMinutes())}:${pad(targetDateObj.getSeconds())}`;
-      document.getElementById('customSimDateInput').value = localIso;
-      document.getElementById('simModeTag').textContent = `(${simState.speedMultiplier}x SIM)`;
-      updateCountdownAndStage();
-    }
-
-    function resetToRealTime() {
-      simState.isSimulating = false;
-      simState.speedMultiplier = 1;
-      document.querySelectorAll('.speed-btn').forEach(b => b.classList.toggle('active', b.dataset.speed === '1'));
-      const now = new Date();
-      wasNov2Unlocked = now >= NOV2_TARGET;
-      wasNov5Unlocked = now >= NOV5_TARGET;
-      document.getElementById('simModeTag').textContent = '(LIVE)';
-      switchView('timerView');
-      updateCountdownAndStage();
-    }
-
-    // Theme & Navigation Listeners
     document.querySelectorAll('.theme-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         sfxPop();
         document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         document.documentElement.setAttribute('data-theme', btn.dataset.setTheme);
-      });
-    });
-
-    document.getElementById('previewToggleBtn').addEventListener('click', () => {
-      sfxPop();
-      document.getElementById('creatorBar').classList.toggle('hidden');
-    });
-
-    document.getElementById('btnRealTime').addEventListener('click', (e) => {
-      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      resetToRealTime();
-    });
-
-    document.getElementById('btn10sNov2').addEventListener('click', (e) => {
-      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      switchView('timerView');
-      setSimulatedTime(new Date(NOV2_TARGET.getTime() - 10 * 1000));
-    });
-
-    document.getElementById('btn10sNov5').addEventListener('click', (e) => {
-      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      switchView('timerView');
-      setSimulatedTime(new Date(NOV5_TARGET.getTime() - 10 * 1000));
-    });
-
-    document.getElementById('applyCustomDateBtn').addEventListener('click', () => {
-      const val = document.getElementById('customSimDateInput').value;
-      if (!val) return;
-      document.querySelectorAll('#creatorBar .stage-btn:not(.speed-btn)').forEach(b => b.classList.remove('active'));
-      setSimulatedTime(new Date(val));
-    });
-
-    document.querySelectorAll('.speed-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const nowVirtual = getCurrentTime();
-        simState.speedMultiplier = Number(btn.dataset.speed);
-        simState.isSimulating = true;
-        simState.simAnchorVirtualMs = nowVirtual.getTime();
-        simState.simAnchorRealMs = Date.now();
-        document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('simModeTag').textContent = `(${simState.speedMultiplier}x SIM)`;
       });
     });
 
@@ -1870,22 +1647,16 @@
     document.getElementById('backToTimerFromNov2').addEventListener('click', () => switchView('timerView'));
 
     function updateCountdownAndStage() {
-      const now = getCurrentTime();
-
-      document.getElementById('simClockReadout').textContent = now.toLocaleString('en-IN', {
-        day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
-      });
-
+      const now = new Date();
       const isNov2Unlocked = now >= NOV2_TARGET;
       const isNov5Unlocked = now >= NOV5_TARGET;
-      const autoSwitch = document.getElementById('autoSwitchToggle').checked;
 
       if (isNov2Unlocked && !wasNov2Unlocked) {
         wasNov2Unlocked = true;
         sfxWin();
         launchConfetti();
         showUnlockToast('🤝 Happy Friendship Day! 3 Years Since 7:45 PM Just Unlocked!');
-        if (autoSwitch) setTimeout(() => switchView('nov2View'), 1100);
+        setTimeout(() => switchView('nov2View'), 1100);
       }
 
       if (isNov5Unlocked && !wasNov5Unlocked) {
@@ -1893,7 +1664,7 @@
         sfxWin();
         launchConfetti();
         showUnlockToast('🎂 Happy 17th Birthday, My Love! 5 November Surprise Unlocked!');
-        if (autoSwitch) setTimeout(() => switchView('nov5View'), 1100);
+        setTimeout(() => switchView('nov5View'), 1100);
       }
 
       const activeTarget = !isNov2Unlocked ? NOV2_TARGET : NOV5_TARGET;
@@ -1905,7 +1676,6 @@
       const secs = Math.floor((diff / 1000) % 60);
       const totalHours = Math.floor(diff / (1000 * 60 * 60));
 
-      // Animate seconds pulse & play countdown tick in final 10 seconds
       if (secs !== lastSecondValue) {
         lastSecondValue = secs;
         const secEl = document.getElementById('cdSecs');
@@ -1925,7 +1695,6 @@
         `${days} Days, ${hours} Hours, ${mins} Mins, ${secs} Secs`;
       document.getElementById('rawTotalHours').textContent = totalHours;
 
-      // Update live 3-year friendship duration counter
       const friendDiff = Math.max(0, now - FIRST_MEET_2023);
       const fDays = Math.floor(friendDiff / (1000 * 60 * 60 * 24));
       const fHours = Math.floor(friendDiff / (1000 * 60 * 60));
@@ -2412,7 +2181,6 @@
       launchConfetti();
     });
 
-    // 17 Simple, Realistic & Sweet Reasons for Her 17th Birthday
     const reasons17 = [
       "Your smile—it honestly fixes my whole day in one second.",
       "How our first talk at 7:45 PM three years ago turned into the best bond ever.",
@@ -2448,7 +2216,6 @@
       updateReasonDisplay();
     });
 
-    // AMBIENT BACKGROUND PARTICLES
     const bgCanvas = document.getElementById('bgCanvas');
     const bgCtx = bgCanvas.getContext('2d');
     let particles = [];
